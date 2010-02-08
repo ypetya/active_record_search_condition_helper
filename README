@@ -1,0 +1,35 @@
+ActiveRecordSearchConditionHelper
+=================================
+
+It's just a small plugin with a simple function to add search conditions incrementaly.
+
+
+Example
+=======
+
+In a controller you can use this plugin to extend conditions before the select.
+
+So when you have different actions to render a single result output your controller should build up that way:
+
+  def get_search_results_in_case_of_something
+    return unless validation_of_parameters
+
+    # base_condition can be a String, or a default hash for select
+    condition = my_base_condition
+
+    # my special additional conditions extends the base condition
+    condition = extend_condition( condition, 'my_other_table.something_new = :something_new', :my_other_table.b = :b')
+
+    query(condition)
+
+    render :template => :results
+  end
+
+  protected
+
+  def query conditions
+    @answer = MainModel.paginate options.merge( :conditions => conditions )
+  end
+
+
+Copyright (c) 2010 kp, released under the MIT license

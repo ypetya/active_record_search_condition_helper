@@ -31,5 +31,6 @@ So when you have different actions to render a single result output your control
     @answer = MainModel.paginate options.merge( :conditions => conditions )
   end
 
+Maybe you should check this plugin too: http://code.google.com/p/railswhere/
 
 Copyright (c) 2010 [ypetya], released under the MIT license
